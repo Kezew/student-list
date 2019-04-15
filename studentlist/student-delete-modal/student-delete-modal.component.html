@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hallgató törlése</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Biztosan ki akarja törölni a következő hallgatót? <br><b>{{name}}</b></p>
+</div>
+<div class="modal-footer">
+  <button type="button" ngbAutofocus class="btn btn-outline-primary" (click)="activeModal.dismiss()">Mégsem</button>
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Törlés</button>
+</div>

@@ -1,0 +1,39 @@
+<div class="container mt-5 mb-3">
+	<div class="row justify-content-between">
+		<div class="col-6">
+			<h1>Hallgató hozzáadása</h1>
+		</div>
+		<div class="col-3 text-right">
+			<a class="btn btn-outline-primary" routerLink="/students">Vissza</a>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="form-group name-group">
+		<label for="exampleInputName">Név</label>
+		<input type="name" class="form-control" id="exampleInputName" [ngClass]="{'is-invalid' : isNameInvalid }" [(ngModel)]="student.name" (blur)="checkName()">
+		<div class="invalid-feedback">Kérlek, add meg a neved!</div>
+	</div>
+	<div class="form-group email-group">
+		<label for="exampleInputEmail1">E-mail cím</label>
+		<input type="email" class="form-control" [ngClass]="{ 'is-invalid' : errors.email }" id="exampleInputEmail1" [(ngModel)]="student.email" (blur)="checkEmail()">
+		<div class="invalid-feedback" *ngIf="errors.emailEmpty">Adj meg email címet</div>
+		<div class="invalid-feedback" *ngIf="errors.emailInvalid">Nem megfelő email</div>
+	</div>
+	<div class="form-group age-group">
+		<label for="exampleInputAge">Életkor</label>
+		<input type="age" class="form-control" [ngClass]="{'is-invalid' : isAgeInvalid() }" id="exampleInputAge" [(ngModel)]="student.age">
+		<div class="invalid-feedback">Kérlek, csak számokat adj meg!</div>
+	</div>
+	<div class="form-group gender-group">
+		<label for="exampleInputSex">Nem</label>
+		<select class="custom-select my-1 mr-sm-2" id="exampleInputSex" [(ngModel)]="student.gender">
+			<option *ngFor="let g of genderEnum" [value]="g.key">{{g.value}}</option>
+
+		</select>
+	</div>
+
+    <button type="button" class="btn btn-success add-button" (click)="add()">Hozzáadás</button>
+
+</div>

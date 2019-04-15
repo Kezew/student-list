@@ -1,0 +1,36 @@
+<ng-container *ngIf="! editMode">
+  <td>{{ student?.name }}</td>
+  <td>{{ student?.email }}</td>
+  <td>{{ student?.age | age : student.gender}}</td>
+  <td>{{ student?.gender | gender }}</td>
+  <td>
+      <button type="button" class="btn btn-warning btn-sm" (click)="setEditMode(true)">Módosít</button>
+      <button type="button" class="btn btn-danger btn-sm" (click)="deleteStudent()">Töröl</button>
+  </td>
+</ng-container>
+
+<ng-container *ngIf="editMode">
+  <td>
+    <input type="text" class="form-control" [ngClass]="{'is-invalid': fieldErrors.indexOf('not-valid-name') > -1 }" [(ngModel)]="cloneStudent.name">
+  </td>
+  <td>
+    <input type="text" class="form-control" [ngClass]="{'is-invalid': fieldErrors.indexOf('not-valid-email') > -1 }" [(ngModel)]="cloneStudent.email">
+  </td>
+  <td>
+    <input type="text" class="form-control" [ngClass]="{'is-invalid': fieldErrors.indexOf('not-valid-age') > -1 }" [(ngModel)]="cloneStudent.age">
+  </td>
+  <td>
+    <select class="form-control" [ngClass]="{'is-invalid': fieldErrors.indexOf('not-valid-gender') > -1 }" [(ngModel)]="cloneStudent.gender">
+      <option value=""> - válassz - </option>
+      <option *ngFor="let g of genderEnum" [value]="g.key">{{ g.value }}</option>
+    </select>
+  </td>
+  <td>
+    <button type="button" class="btn btn-primary btn-sm" (click)="saveStudent()" [disabled]="isSaving">
+      <span *ngIf="isSaving" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="isSaving">Mentés folyamatban...</span>
+      <span *ngIf="! isSaving">Mentés</span>
+    </button>
+    <button type="button" class="btn btn-secondary btn-sm" (click)="setEditMode(false)" *ngIf="! isSaving">Mégse</button>
+  </td>
+</ng-container>
