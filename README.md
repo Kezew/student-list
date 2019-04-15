@@ -1,0 +1,2 @@
+# student-list
+tanulói llista 
